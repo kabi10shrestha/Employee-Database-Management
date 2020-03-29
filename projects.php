@@ -53,6 +53,8 @@
     <tbody>
 
 <?php
+require('connect.php');
+/*
 $servername = "localhost";
 $username = "root";
 $password = "db4168038";
@@ -63,7 +65,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
+*/
 
 $sql = "SELECT * FROM works_on LEFT JOIN employee ON employee.ssn = works_on.essn LEFT JOIN project ON project.pnumber = works_on.pno";
 $result = $conn->query($sql);
@@ -80,10 +82,10 @@ if ($result->num_rows > 0) {
 } else {
 	echo "0 results";
 }
+$conn->close();
 
 
-
-//$_GET["name"]
+//$_GET["name"] index?page=ssn
 
 
 ?>

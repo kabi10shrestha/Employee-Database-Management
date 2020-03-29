@@ -44,6 +44,8 @@
     </thead>
     <tbody>
 	<?php
+	require('connect.php');
+/*
 $servername = "localhost";
 $username = "root";
 $password = "db4168038";
@@ -54,7 +56,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
+*/
 
 $sql = "SELECT * from department LEFT JOIN employee ON employee.ssn = department.mgrssn";
 $result = $conn->query($sql);
