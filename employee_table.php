@@ -59,6 +59,8 @@
     <tbody>
 
 <?php
+require('connect.php');
+/*
 $servername = "localhost";
 $username = "root";
 $password = "db4168038";
@@ -69,7 +71,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
+*/
 
 $sql = "SELECT * FROM employee LEFT JOIN department ON department.dnumber = employee.dno";
 //WHERE not exists (SELECT * FROM  dependent WHERE ssn=essn) ORDER BY dname ASC, lname ASC;";
@@ -197,6 +199,11 @@ else {
 
 <html>
 <!--<?php
+		//AUTO_COMMIT = 0;
+		//BEGIN;
+		//COMMIT;
+		//ROLLBACK;
+
          //var_dump($_POST);
          require('connect.php');
          if(! $conn ) {
