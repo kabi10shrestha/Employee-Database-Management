@@ -198,7 +198,7 @@ else {
 
 
 <html>
-<!--<?php
+<?php
 		//AUTO_COMMIT = 0;
 		//BEGIN;
 		//COMMIT;
@@ -209,13 +209,19 @@ else {
          if(! $conn ) {
             die('Could not connect: ' . mysqli_error());
          }
-         $stmt = $conn->prepare("insert into department(dname, dnumber, mgrssn, mgrstartdate) values(?,?,?,'2020-01-01')");
-         $dname = $_POST['dname'];
-         $dnum = $_POST['dno'];
-         $mgrssn = $_POST['mgrssn'];
-         $stmt->bind_param("sii", $dname, $dnum, $mgrssn);
+         $stmt = $conn->prepare("insert into employee(fname, lname, ssn, dob, address, sex, salary, manager,dept) values(?,?,?,?,?,?,?,?,?)");
+		 $fname = $_POST['first_name'];
+		 $lname = $_POST['last_name'];
+		 $ssn = $_POST['ssn'];
+		 $dob = $_POST['dob'];
+		 $address = $_POST['address'];
+		 $sex = $_POST['sex'];
+		 $salary = $_POST['salary'];
+		 $manager = $_POST['manager'];
+	     $dept = $_POST['dept_name'];        
+         $stmt->bind_param("ssisssiii", $fname, $lname, $ssn, $dob, $address, $sex, $salacy, $manager, $dept);
          if ($stmt->execute()) {
-              echo "ok <a href='index.php'>Back</a>";
+              echo "ok <a href='employee_table.php'>Back</a>";
          } else 
          {
               echo "Fail";
@@ -223,7 +229,7 @@ else {
          }
          mysqli_close($conn);
 ?>
--->
+
 </html>
 
 
