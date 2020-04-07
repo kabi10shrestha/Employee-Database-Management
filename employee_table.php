@@ -31,12 +31,6 @@
     </ul>
   </div>
 </nav>
-  
-<div class="container">
-  <h3>Navigation Bar</h3>
-  <p>A navigation bar is a navigation header that is placed at the top of the page.</p>
-</div>
-
 
 <div class="container">
   <h2>Employee Database</h2>
@@ -120,42 +114,36 @@ else {
 	echo "<p>";
 
   print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
+  
   print("First Name: <input type=\"text\" name=\"first_name\" required>");
   
   echo "<br />";
   
-  print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
   print("Last Name: <input type=\"text\" name=\"last_name\" required>");
   
   echo "<br />";
   
-  print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
-  print("SSN: <input type=\"text\" name=\"ssn\" required>");
+  print("SSN: <input type=\"number\" name=\"ssn\" required>");
   
   echo "<br />";
   
-  print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
   print("DOB: <input type=\"text\" name=\"dob\" required>");
   
   echo "<br />";
   
-  print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
   print("Address: <input type=\"text\" name=\"address\" required>");
   
   echo "<br />";
   
-  print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
   print("Sex: <input type=\"text\" name=\"sex\" required>");
   
   echo "<br />";
   
-  print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
-  print("Salary: <input type=\"text\" name=\"salary\" required>");
+  print("Salary: <input type=\"number\" name=\"salary\" required>");
   
   echo "<br />";
   
-  print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
-  print("Manager: <input type=\"text\" name=\"manager\" required>");
+  print("Manager: <input type=\"number\" name=\"manager\" required>");
   
   /*<label for="mgr">Managers:</label>
 
@@ -169,8 +157,7 @@ else {
   
   echo "<br />";
   
-  print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
-  print("Department: <input type=\"text\" name=\"dept_name\" required>");
+  print("Department: <input type=\"number\" name=\"dept_name\" required>");
   
   echo "<br />";
   
@@ -209,7 +196,7 @@ else {
          if(! $conn ) {
             die('Could not connect: ' . mysqli_error());
          }
-         $stmt = $conn->prepare("insert into employee(fname, lname, ssn, dob, address, sex, salary, manager,dept) values(?,?,?,?,?,?,?,?,?)");
+         $stmt = $conn->prepare("insert into employee(fname, lname, ssn, bdate, address, sex, salary, superssn, dno) values(?,?,?,?,?,?,?,?,?)");
 		 $fname = $_POST['first_name'];
 		 $lname = $_POST['last_name'];
 		 $ssn = $_POST['ssn'];
@@ -219,7 +206,7 @@ else {
 		 $salary = $_POST['salary'];
 		 $manager = $_POST['manager'];
 	     $dept = $_POST['dept_name'];        
-         $stmt->bind_param("ssisssiii", $fname, $lname, $ssn, $dob, $address, $sex, $salacy, $manager, $dept);
+         $stmt->bind_param("ssiissiii", $fname, $lname, $ssn, $dob, $address, $sex, $salary, $manager, $dept);
          if ($stmt->execute()) {
               echo "ok <a href='employee_table.php'>Back</a>";
          } else 

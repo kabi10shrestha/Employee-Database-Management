@@ -90,6 +90,11 @@ if (isset($_POST['dept_name'])) {
 else {
   print("<form method=\"post\" action=\"$_SERVER[PHP_SELF]\">");
   print("Add a new department: <input type=\"text\" name=\"dept_name\" required>");
+  echo "<br />";
+  print("Department Number: <input type=\"text\" name=\"dept_num\" required>");
+  echo "<br />";
+  print("Manager SSN: <input type=\"text\" name=\"dept_mgr\" required>");
+  echo "<br />";
   print("<input type=\"submit\" value=\"Submit\">");
   print("</form>");
 }
@@ -112,16 +117,16 @@ else {
 
 
 <html>
-<!--<?php
+<?php
          //var_dump($_POST);
          require('connect.php');
          if(! $conn ) {
             die('Could not connect: ' . mysqli_error());
          }
          $stmt = $conn->prepare("insert into department(dname, dnumber, mgrssn, mgrstartdate) values(?,?,?,'2020-01-01')");
-         $dname = $_POST['dname'];
-         $dnum = $_POST['dno'];
-         $mgrssn = $_POST['mgrssn'];
+         $dname = $_POST['dept_name'];
+         $dnum = $_POST['dept_num'];
+         $mgrssn = $_POST['dept_mgr'];
          $stmt->bind_param("sii", $dname, $dnum, $mgrssn);
          if ($stmt->execute()) {
               echo "ok <a href='index.php'>Back</a>";
@@ -132,7 +137,6 @@ else {
          }
          mysqli_close($conn);
 ?>
--->
 </html>
 
 
