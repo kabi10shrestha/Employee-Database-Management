@@ -8,6 +8,7 @@ mysql -u username -p dbname < install.sql
 
 To connect server to database you will need to create a connect.php file containing the following:
 
+/*
 <?php
 $conn = new mysqli("servername", "username", "password", "dbname");
        if ($conn->connect_error) {
@@ -15,7 +16,7 @@ $conn = new mysqli("servername", "username", "password", "dbname");
            die("Connection failed: " . $conn->connect_error);
        }
 ?>
-
+*/
 
 The database contains tables for department, dependent, dept_locations, employee, project and works_on.
 The index.php file is used to link the database to a web server and allow user interaction with the database.
