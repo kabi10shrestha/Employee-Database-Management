@@ -23,17 +23,7 @@
 </script>
 
 
- <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker3').datetimepicker({
-                    format: 'LT'
-                });
-            });
-        </script>
-
-
-
-
+ 
 </head>
 <body>
 
@@ -79,7 +69,7 @@ function employee_page() {
 	 echo '</tbody></table>';
 	 
 	 
-$manager_result = $conn->query("SELECT mgrssn, fname, lname FROM employee, department where mgrssn = ssn");
+$manager_result = $conn->query("SELECT DISTINCT mgrssn, fname, lname FROM employee, department where mgrssn = ssn");
 $department_result = $conn->query("SELECT dnumber, dname FROM department");
 
 
@@ -158,7 +148,7 @@ function add_employee() {
 		 $salary = $_POST['salary'];
 		 $manager = $_POST['mgr'];
 	     $dept = $_POST['dept'];        
-         $stmt->bind_param("ssidssiii", $fname, $lname, $ssn, $dob, $address, $sex, $salary, $manager, $dept);
+         $stmt->bind_param("ssisssiii", $fname, $lname, $ssn, $dob, $address, $sex, $salary, $manager, $dept);
          if ($stmt->execute()) {
               echo "ok <a href='index.php?page=employee'>Back</a>";
          } else 
@@ -224,7 +214,7 @@ $conn->close();
 
 function add_department() {
 
-
+$today = date("Y-m-d");
 
 
   //var_dump($_POST);
@@ -232,7 +222,7 @@ function add_department() {
          if(! $conn ) {
             die('Could not connect: ' . mysqli_error());
          }
-         $stmt = $conn->prepare("insert into department(dname, dnumber, mgrssn, mgrstartdate) values(?,?,?,'2020-01-01')");
+         $stmt = $conn->prepare("insert into department(dname, dnumber, mgrssn, mgrstartdate) values(?,?,?, '".$today."')");
          $dname = $_POST['dept_name'];
          $dnum = $_POST['dept_num'];
          $mgrssn = $_POST['dept_mgr'];
